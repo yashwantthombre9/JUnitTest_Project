@@ -2,6 +2,7 @@ package junit;
 
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -19,9 +20,26 @@ import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 
 public class BMICalc extends JFrame {
-	
+	static String check = null;
 	public static double findBMI(int weight,int meter) {
+		String first = "you are considered underweight and possibly malnourished!";
+		String second = "you are within a healthy weight range for young and middle-aged adults!";
+		String third  = "you are considered overweight!";
+		String fourth = "you are considered obese!";
+		
+//		String check = null;
 		double bmi =  (weight / Math.pow(meter, 2));
+		if( bmi < 18.5)
+		check = first;
+		else if( bmi >= 18.5 && bmi <= 24.9) {
+			check = second;
+		}
+		else if( bmi > 25 && bmi < 29.9)
+		check  = third;
+		else if(bmi >= 30)
+			check = fourth;
+			
+		JOptionPane.showMessageDialog(null, check);
 		return bmi;
 	}
 
@@ -56,6 +74,7 @@ public class BMICalc extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		getContentPane().setBackground(Color.cyan);
 		
 		JTextPane txtpnWelcome = new JTextPane();
 		txtpnWelcome.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -79,14 +98,7 @@ public class BMICalc extends JFrame {
 		lblFeet.setBounds(139, 107, 46, 14);
 		contentPane.add(lblFeet);
 		
-//		txtInches = new JTextField();
-//		txtInches.setColumns(10);
-//		txtInches.setBounds(166, 104, 86, 20);
-//		contentPane.add(txtInches);
-//		
-//		JLabel lblInches = new JLabel("in.");
-//		lblInches.setBounds(256, 107, 46, 14);
-//		contentPane.add(lblInches);
+
 		
 		JTextPane txtpnResults = new JTextPane();
 		txtpnResults.setBackground(UIManager.getColor("Button.background"));
